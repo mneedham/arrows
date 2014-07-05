@@ -18,6 +18,11 @@ window.onload = function()
         .append("svg:svg")
         .attr("class", "graphdiagram");
 
+    d3.xhr("/Lato-base64.txt", function(data) { 
+        var result = data.response; 
+        d3.select("#canvas svg").insert("style", "g").html("@font-face { font-family: \"Lato\"; font-style: normal; font-weight: 400; src: url(\"data:font/truetype;charset=utf-8;base64," + result + "\");}");
+    });
+
     var diagram = gd.diagram()
         .scaling(gd.scaling.centerOrScaleDiagramToFitSvg)
         .overlay(function(layoutModel, view) {
